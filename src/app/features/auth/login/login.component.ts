@@ -95,7 +95,7 @@ import { NotificationService } from '../../../core/services/notification.service
 
         <!-- Comptes de test -->
         <div class="auth-card__demo">
-          <p class="demo-label">Comptes de démonstration :</p>
+          <p class="demo-label">Comptes de démonstration — cliquez pour remplir :</p>
           <div class="demo-accounts">
             <button class="demo-btn" (click)="fillDemo('admin')" type="button">
               <i class="ph ph-shield-checkered"></i> Admin
@@ -103,6 +103,10 @@ import { NotificationService } from '../../../core/services/notification.service
             <button class="demo-btn" (click)="fillDemo('patient')" type="button">
               <i class="ph ph-user"></i> Patient
             </button>
+          </div>
+          <div class="demo-hints">
+            <span class="demo-hint"><b>Admin :</b> admin&#64;medirdv.com / admin123</span>
+            <span class="demo-hint"><b>Patient :</b> patient&#64;medirdv.com / patient123</span>
           </div>
         </div>
 
@@ -173,6 +177,18 @@ import { NotificationService } from '../../../core/services/notification.service
 
     .demo-btn:hover { background: rgba(99,102,241,0.15); color: var(--color-primary); border-color: var(--color-primary); }
 
+    .demo-hints { display: flex; flex-direction: column; gap: var(--space-1); margin-top: var(--space-3); }
+
+    .demo-hint {
+      font-size: 0.72rem;
+      color: var(--color-text-muted);
+      text-align: center;
+      font-family: monospace;
+      background: rgba(99,102,241,0.07);
+      border-radius: var(--radius-sm);
+      padding: 2px var(--space-2);
+    }
+
     .auth-card__footer { text-align: center; margin-top: var(--space-5); }
   `],
 })
@@ -233,8 +249,8 @@ export class LoginComponent {
    */
   fillDemo(role: 'admin' | 'patient'): void {
     const creds = {
-      admin: { email: 'admin@medirdv.com', password: 'Admin@1234' },
-      patient: { email: 'patient@medirdv.com', password: 'Patient@1234' },
+      admin:   { email: 'admin@medirdv.com',   password: 'admin123'   },
+      patient: { email: 'patient@medirdv.com', password: 'patient123' },
     };
     this.loginForm.patchValue(creds[role]);
   }

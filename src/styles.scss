@@ -1,0 +1,251 @@
+/* 
+ * Design System MediRDV
+ * Thème clair moderne, propre et fluide
+ */
+
+ :root {
+  /* ─── Palette de couleurs (Thème médical clair et épuré) ─── */
+  --color-bg: #F8FAFC; /* Gris très clair / blanc cassé */
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F1F5F9;
+  --color-surface-elevated: #FFFFFF;
+  
+  --color-primary: #3B82F6; /* Bleu médical de confiance */
+  --color-primary-hover: #2563EB;
+  --color-primary-light: #60A5FA;
+  
+  --color-success: #10B981;
+  --color-error: #EF4444;
+  --color-warning: #F59E0B;
+  
+  --color-text-primary: #0F172A; /* Slate 900 */
+  --color-text-secondary: #475569; /* Slate 600 */
+  --color-text-muted: #94A3B8; /* Slate 400 */
+  
+  --color-border: #E2E8F0; /* Slate 200 */
+
+  /* Gradients */
+  --gradient-bg: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);
+  --gradient-primary: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+  
+  /* ─── Typographie ─── */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'DM Sans', var(--font-sans);
+  
+  /* ─── Spacing ─── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  
+  /* ─── Border Radius (Annulé pour un style carré) ─── */
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-2xl: 0;
+  --radius-full: 0;
+  
+  /* ─── Ombres (plus douces pour un thème clair) ─── */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+  
+  /* ─── Dimensions ─── */
+  --navbar-height: 72px;
+  --max-width: 1280px;
+
+  /* ─── Z-index ─── */
+  --z-navbar: 100;
+  --z-modal: 200;
+  --z-toast: 300;
+}
+
+/* ─── Reset & Base ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  background-image: var(--gradient-bg);
+  background-attachment: fixed;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+}
+
+/* ─── Clean UI Cards ─── */
+.glass-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+/* ─── Buttons ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-lg);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.25);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.btn--outline:hover:not(:disabled) {
+  background: var(--color-surface-hover);
+  color: var(--color-text-primary);
+}
+
+.btn--full { width: 100%; }
+.btn--sm { padding: var(--space-2) var(--space-4); font-size: 0.85rem; border-radius: var(--radius-md); }
+.btn--lg { padding: var(--space-4) var(--space-8); font-size: 1.1rem; border-radius: var(--radius-xl); }
+
+/* Loading Spinner pour Boutons */
+.spinner {
+  width: 1.2em;
+  height: 1.2em;
+  border: 2px solid rgba(59, 130, 246, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--color-primary);
+  animation: spin 0.8s linear infinite;
+}
+
+.btn--primary .spinner {
+  border-color: rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Forms ─── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.form-input {
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.form-input::placeholder { color: var(--color-text-muted); }
+
+.form-input:hover { border-color: #CBD5E1; }
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.form-input--error { border-color: var(--color-error) !important; }
+.form-error { color: var(--color-error); font-size: 0.8rem; margin-top: 2px; }
+
+/* ─── Scrollbar personnalisée ─── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+/* ─── Responsive ─── */
+
+/* Tablette (≤ 1024px) */
+@media (max-width: 1024px) {
+  :root {
+    --navbar-height: 64px;
+  }
+  
+  .btn--lg { padding: var(--space-3) var(--space-6); font-size: 1rem; }
+}
+
+/* Mobile (≤ 768px) */
+@media (max-width: 768px) {
+  :root {
+    --navbar-height: 56px;
+  }
+
+  body { font-size: 0.95rem; }
+  
+  h1 { font-size: 1.5rem !important; }
+  h2 { font-size: 1.25rem !important; }
+  h3 { font-size: 1.1rem !important; }
+
+  .btn { font-size: 0.85rem; padding: var(--space-2) var(--space-4); }
+  .btn--lg { padding: var(--space-3) var(--space-5); font-size: 0.95rem; }
+}
+
+/* Petit mobile (≤ 480px) */
+@media (max-width: 480px) {
+  .form-input { font-size: 16px; /* Empêche le zoom iOS */ }
+}
